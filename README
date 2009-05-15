@@ -1,0 +1,108 @@
+Authentasaurus
+==============
+
+Authentasaurus is a generator plugin that generates a stub for restful
+authentication controllers, models, tests, routes and migrations.
+
+Authentasaurus is also a group/permission plugin, you can define permissions per
+controller action for each group of users.
+
+
+HOWTO User
+==========
+
+To start using Authentasaurus follow these simple steps :
+
+1. copy authentasaurus folder to your project vendor/plugins folder.
+2. run script/generator authentausaurus UserModelName in your project's
+   root directory. (replace UserModelName with the desired name for the main
+   user model --usually called user--)
+3. If you set up a UserModelName other than the default (user) add the following
+   option in the session controller (inside app/controllers) require_login
+   method, :model => UserModel
+
+   e.g.: created a UserModel called masher
+    require_login :model=> Masher, :actions => :destroy, :skip_request => true
+
+4. setup session store and create session migrations
+5. customize your user model and run your migerations
+6. if you installer authentasaurus without --skip-validation setup your email
+   settings in config/enviroment.rb
+7. thats it you can now test your application by running script/server in your
+   project root directory and going to http://localhost:3000/login
+
+Generator options
+=================
+
+You can user some options with the Authentasaurus generator, currently only one
+is available:
+
+--skip-validation
+    { Skips generating the validation files used to send activation emails }
+
+Session/Permissions Helpers
+===========================
+
+There are three main session helpers in Authentasaurus:
+
+require_login: requires the user to login before accessing the actions specified
+
+    ex: Tells Authentasaurus that the action destroy requires login and that
+        Authentasaurus shouldnt store the request in the session
+        (typically for logout actions)
+
+        :model - Specifies the model that controls user information.
+        :user_id - the session variable that holds the logged in user id
+        :login_message - flash message to display when login is required
+        :actions - actions that require the permission (list)
+        :skip_request - skips saving the original request
+                        (to redirect to after login)
+
+     require_login :model=> Masher, :actions => :destroy, :skip_request => true
+
+require_write: requires the user to have a write permission to that area to
+               access the actions specified
+
+    ex: Tells Authentasaurus that the actions create_user and delete_user
+        requires login and write permission.
+        if you change any session variables in the session model you have to
+        tell Authentasaurus where to find it.
+
+        :model - Specifies the model that controls user information.
+        :user_id - the session variable that holds the logged in user id
+        :user_permissions - the session variable that holds the user permissions
+        :guest_permissions - the session variable that holds guests' permissions
+        :login_message - flash message to display when login is required
+        :actions - actions that require the permission (list)
+        :skip_request - skips saving the original request
+                        (to redirect to after login)
+
+     require_write :model=> Masher,:user_permissions => :perms,
+                   :guest_permissions => :guest_perms,
+                   :login_message => "Busted, login first",
+                   :actions => [:create_user, :delete_user]
+
+require_read: requires the user to have a read permission to that area to
+               access the actions specified
+
+    ex: Tells Authentasaurus that the action show_user requires login and read
+        permission. if you change any session variables in the session model you
+        have to tell Authentasaurus where to find it.
+
+        :model - Specifies the model that controls user information.
+        :user_id - the session variable that holds the logged in user id
+        :user_permissions - the session variable that holds the user permissions
+        :guest_permissions - the session variable that holds guests' permissions
+        :login_message - flash message to display when login is required
+        :actions - actions that require the permission (list)
+        :skip_request - skips saving the original request
+                        (to redirect to after login)
+
+     require_read :model=> Masher,:user_permissions => :perms,
+                   :guest_permissions => :guest_perms,
+                   :login_message => "Busted, login first",
+                   :actions => :show_user
+
+
+
+Copyright (c) 2009 Mash Solutions, released under the MIT license

@@ -1,0 +1,13 @@
+Description:
+    Generates a stub for Authentasaurus restful authentication.
+
+Examples:
+    `./script/generate authentasaurus user`
+
+        creates controllers, views, models and test for Authentasaurus with main
+        user model named "user" including email validation
+
+    `./script/generate authentasaurus user --skip-validation
+
+        creates controllers, views, models and test for Authentasaurus with main
+        user model named "user" without email validation

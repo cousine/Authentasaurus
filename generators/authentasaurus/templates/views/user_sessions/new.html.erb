@@ -1,0 +1,11 @@
+<fieldset>
+  <legend>Login</legend>
+  <% form_for @session_object do |f| %>
+    Username : <br>
+    <%= f.text_field :username, :size => 30 %><br><br>
+    Password : <br>
+    <%= f.password_field :password, :size => 30 %><br><br>
+
+    <%= f.submit"Login" %>
+  <% end %>
+</fieldset>

@@ -1,0 +1,3 @@
+ValidationEmailer#validation_mail
+
+Find me in app/views/validation_emailer/validation_mail.erb
