@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + "/lib/routes_funcs.rb")
+﻿require File.expand_path(File.dirname(__FILE__) + "/lib/routes_funcs.rb")
 class AuthentasaurusGenerator < Rails::Generator::NamedBase
   default_options :skip_validation => false
 
@@ -18,6 +18,7 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
       # Other directories
       m.directory "app/views/#{file_name}_sessions"
       m.directory "app/views/validation_emailer"
+	  m.directory "app/views/validations"
       m.directory "test/unit/helpers"
       m.directory "test/fixtures/validation_emailer"
 
@@ -70,8 +71,12 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
         # Fixtures
         m.file 'fixtures/validations.yml', File.join('test/fixtures', class_path, "validations.yml")
         m.file 'fixtures/validation_emailer/validation_mail', File.join('test/fixtures/validation_emailer', class_path, "validation_mail")
+		
+		# Controllers
+		m.template 'controllers/validations_controller.rb', File.join('app/controllers', class_path, "validations_controller.rb")
 
         # Views
+		m.file 'views/validations/index.html.erb', File.join("app/views/validations", class_path, "index.html.erb")
         m.file 'views/validation_emailer/validation_mail.erb', File.join("app/views/validation_emailer", class_path, "validation_mail.erb")
       end
 
