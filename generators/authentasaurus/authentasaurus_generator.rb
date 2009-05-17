@@ -57,6 +57,12 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
 
       # Migrations
       m.migration_template 'migrations/create_users.rb', 'db/migrate', :migration_file_name => "create_authentasaurus_tables"
+	  
+	  # Routes
+      
+      m.route_name('login', '/login', { :controller => "#{file_name}_sessions", :action => 'new'})
+      m.route_name('no_access', '/no_access', { :controller => "#{file_name}_sessions", :action => 'no_access'})
+      m.route_resources "#{file_name}_sessions"
 
       # Validations
       unless options[:skip_validation]
@@ -78,18 +84,10 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
         # Views
 		m.file 'views/validations/index.html.erb', File.join("app/views/validations", class_path, "index.html.erb")
         m.file 'views/validation_emailer/validation_mail.erb', File.join("app/views/validation_emailer", class_path, "validation_mail.erb")
+		
+		# Routes
+		m.route_name('validate', '/validate', { :controller => "validations", :action => 'index'})
       end
-
-       # insert routes
-#      sentinel = 'ActionController::Routing::Routes.draw do |map|'
-#      gsub_file 'config/routes.rb', /(#{Regexp.escape(sentinel)})/mi do |match|
-#        "#{match}\n map.with_options :controller => \"#{file_name}_sessions\" do |#{file_name}_session|\n  #{file_name}_session.login \"#{file_name}_sessions/login\", :action => :new, :conditions => {:method => :get}\n  #{file_name}_session.no_access \"#{file_name}_sessions/no_access\", :action => :new, :conditions => {:method => :get}\n end\n map.resources :#{file_name}_sessions"
-#      end
-      
-      m.route_name('login', '/login', { :controller => "#{file_name}_sessions", :action => 'new'})
-      m.route_name('no_access', '/no_access', { :controller => "#{file_name}_sessions", :action => 'no_access'})
-      m.route_resources "#{file_name}_sessions"
-
 
     end
   end
