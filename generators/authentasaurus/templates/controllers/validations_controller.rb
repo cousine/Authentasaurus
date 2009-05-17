@@ -1,4 +1,4 @@
-﻿class ValidationsController < ApplicationController
+class ValidationsController < ApplicationController
 	def index
 		respond_to do |format|
 			format.html {
@@ -6,7 +6,7 @@
 				if validation
 					validation.<%= file_name %>.active = true
 					validation.destroy
-					flash.now[:success] = "Account activated successfully"
+					flash.now[:notice] = "Account activated successfully"
 					redirect_to login_url
 				else
 					flash.now[:notice] = "Validation failed, check your validation code and try again"

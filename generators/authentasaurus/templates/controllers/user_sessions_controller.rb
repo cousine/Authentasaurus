@@ -1,4 +1,4 @@
-﻿class <%= class_name %>SessionsController < ApplicationController
+class <%= class_name %>SessionsController < ApplicationController
   require_login :actions => :destroy, :skip_request => true
 
   # creates a new user session (login)

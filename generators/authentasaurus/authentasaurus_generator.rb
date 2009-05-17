@@ -1,4 +1,4 @@
-﻿require File.expand_path(File.dirname(__FILE__) + "/lib/routes_funcs.rb")
+require File.expand_path(File.dirname(__FILE__) + "/lib/routes_funcs.rb")
 class AuthentasaurusGenerator < Rails::Generator::NamedBase
   default_options :skip_validation => false
 

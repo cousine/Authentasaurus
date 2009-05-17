@@ -1,4 +1,4 @@
-﻿class Validation < ActiveRecord::Base
+class Validation < ActiveRecord::Base
   belongs_to :<%= file_name %>
   
   # Check that everything is there
