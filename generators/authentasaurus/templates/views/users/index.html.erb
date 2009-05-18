@@ -7,7 +7,7 @@
 		<th>Active</th>
 		<th>Group</th>
 	</tr>
-	<% @user.each do |user| %>
+	<% @users.each do |user| %>
 		<tr>
 			<td><%= link_to user.username, user %></td>
 			<td><%= user.name %></td>

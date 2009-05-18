@@ -1,4 +1,4 @@
-﻿class <%= class_name.pluralize %>Controller < ApplicationController
+class <%= class_name.pluralize %>Controller < ApplicationController
 	require_read :model => <%= class_name %>,:actions => [:index, :show]
 	require_write :model => <%= class_name %>,:actions => [:new, :create, :edit, :update, :destroy]
 	
