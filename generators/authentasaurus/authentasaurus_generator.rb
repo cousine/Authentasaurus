@@ -29,8 +29,8 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
       # Model class
       m.template 'models/user.rb', File.join('app/models', class_path, "#{file_name}.rb")
       m.template 'models/user_session.rb', File.join('app/models', class_path, "#{file_name}_session.rb")
+	  m.template 'models/group.rb', File.join('app/models', class_path, "group.rb")
       m.file 'models/area.rb', File.join('app/models', class_path, "area.rb")
-      m.file 'models/group.rb', File.join('app/models', class_path, "group.rb")
       m.file 'models/permission.rb', File.join('app/models', class_path, "permission.rb")
 
       # Unit tests
