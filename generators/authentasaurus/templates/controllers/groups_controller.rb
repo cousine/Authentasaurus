@@ -1,9 +1,9 @@
-﻿class <%= class_name.pluralize %>Controller < ApplicationController
+class GroupsController < ApplicationController
 	require_read :model => <%= class_name %>,:actions => [:index, :show]
 	require_write :model => <%= class_name %>,:actions => [:new, :create, :edit, :update, :destroy]
 	
 	def index
-		@users = <%= class_name %>.find :all
+		@groups = Group.find :all
 		
 		respond_to do |format|
 			format.html
@@ -11,7 +11,7 @@
 	end
 	
 	def show
-		@user = <%= class_name %>.find(params[:id])
+		@group = Group.find params[:id]
 		
 		respond_to do |format|
 			format.html
@@ -19,7 +19,7 @@
 	end
 	
 	def new
-		@user = <%= class_name %>.new
+		@group = Group.new
 		
 		respond_to do |format|
 			format.html
@@ -27,21 +27,21 @@
 	end
 	
 	def create
-		@user = <%= class_name %>.new params[:user]
-			
+		@group = Group.new params[:group]
+		
 		if request.post?
-			if @user.save
-				flash.now[:notice] = "User saved successfully"
+			if @group.save
+				flash.now[:notice] = "Group created"
 				redirect_to :index
 			else
-				flash.now[:notice] = "Error saving user"
+				flash.now[:notice] = "Error creating group"
 				render :new
 			end
 		end
 	end
 	
 	def edit
-		@user = <%= class_name %>.find params[:id]
+		@group = Group.find params[:id]
 		
 		respond_to do |format|
 			format.html
@@ -49,25 +49,27 @@
 	end
 	
 	def update
-		@user = <%= class_name %>.find params[:id]
+		@group = Group.find params[:id]
 		
 		if request.post?
-			if @user.update_attributes(params[:user])
-				flash.now[:notice] = "User updated"
-				redirect_to @user
+			if @group.update_attributes(params[:group])
+				flash.now[:notice] = "Group updated"
+				redirect_to @group
 			else
-				flash.now[:notice] = "Error updating user"
+				flash.now[:notice] = "Error updating group"
 				render :edit
 			end
 		end
+		
 	end
 	
 	def destroy
-		@user = <%= class_name %>.find params[:id]
-		@user.destroy
+		@group = Group.find params[:id]
+		@group.destroy
 		
 		respond_to do |format|
 			format.html { redirect_to :index }
-		end
+		end	
 	end
+	
 end

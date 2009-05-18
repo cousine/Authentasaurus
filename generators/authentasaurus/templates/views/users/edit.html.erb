@@ -1,0 +1,27 @@
+<h1>Editing <%= @user.username %></h1>
+<% form_for @user do |f| %>
+	<%= f.error_messages %>
+	<br>
+	<%= label_for :username %>
+	<%= f.text_field :username, :size => 30 %>
+	<br>
+	<%= label_for :new_password %>
+	<%= f.password_field :new_password, :size => 30 %>
+	<br>
+	<%= label_for :new_password_confirmation %>
+	<%= f.password_field :new_password_confirmation, :size => 30 %>
+	<br>
+	<%= label_for :name %>
+	<%= f.text_field :name, :size => 30 %>
+	<br>
+	<%= label_for :email %>
+	<%= f.text_field :email, :size => 30 %>
+	<br>
+	<%= label_for :active %>
+	<%= f.check_box_field :active %>
+	<br>
+	<%= label_for :group_id %>
+	<%= f.collection_select(:group_id, Group.find(:all), :id, :name, {:prompt => true}) %>
+	<br>
+	<%= f.submit "Create" %>
+<% end %>

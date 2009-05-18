@@ -17,6 +17,10 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
       m.directory File.join('test/functional', class_path)
       # Other directories
       m.directory "app/views/#{file_name}_sessions"
+	  m.directory "app/views/#{file_name.pluralize}"
+	  m.directory "app/views/groups"
+	  m.directory "app/views/areas"
+	  m.directory "app/views/permissions"
       m.directory "app/views/validation_emailer"
 	  m.directory "app/views/validations"
       m.directory "test/unit/helpers"
@@ -45,6 +49,7 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
       # Controllers
       m.template 'controllers/user_sessions_controller.rb', File.join('app/controllers', class_path, "#{file_name}_sessions_controller.rb")
 	  m.template 'controllers/users_controller.rb', File.join('app/controllers', class_path, "#{file_name.pluralize}_controller.rb")
+	  m.template 'controllers/groups_controller.rb', File.join('app/controllers', class_path, "groups_controller.rb")
 
       # Functional
       m.template 'functional/user_sessions_controller_test.rb', File.join('test/functional', class_path, "#{file_name}_sessions_controller_test.rb")
@@ -53,18 +58,25 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
       m.template 'helpers/user_sessions_helper.rb', File.join('app/helpers', class_path, "#{file_name}_sessions_helper.rb")
 
       # Views
+		## user sessions
       m.file 'views/user_sessions/new.html.erb', File.join("app/views/#{file_name}_sessions", class_path, "new.html.erb")
       m.file 'views/user_sessions/no_access.html.erb', File.join("app/views/#{file_name}_sessions", class_path, "no_access.html.erb")
+		## users
+	  m.file 'views/users/edit.html.erb', File.join("app/views/#{file_name.pluralize}", class_path, "edit.html.erb")
+	  m.file 'views/users/index.html.erb', File.join("app/views/#{file_name.pluralize}", class_path, "index.html.erb")
+	  m.file 'views/users/new.html.erb', File.join("app/views/#{file_name.pluralize}", class_path, "new.html.erb")
+	  m.file 'views/users/show.html.erb', File.join("app/views/#{file_name.pluralize}", class_path, "show.html.erb")
+		## groups
+	  m.template 'views/groups/show.html.erb', File.join('app/views/groups', class_path, "show.html.erb")
+	  m.file 'views/groups/index.html.erb', File.join("app/views/groups", class_path, "index.html.erb")
 
-      # Migrations
-      m.migration_template 'migrations/create_users.rb', 'db/migrate', :migration_file_name => "create_authentasaurus_tables"
-	  
 	  # Routes
       
       m.route_name('login', '/login', { :controller => "#{file_name}_sessions", :action => 'new'})
       m.route_name('no_access', '/no_access', { :controller => "#{file_name}_sessions", :action => 'no_access'})
       m.route_resources "#{file_name}_sessions"
 	  m.route_resources "#{file_name.pluralize}"
+	  m.route_resources "groups"
 
       # Validations
       unless options[:skip_validation]
@@ -90,6 +102,10 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
 		# Routes
 		m.route_name('validate', '/validate', { :controller => "validations", :action => 'index'})
       end
+	  
+	  # Migrations
+      m.migration_template 'migrations/create_authentasaurus_tables.rb', 'db/migrate', :migration_file_name => "create_authentasaurus_tables"
+	  
 
     end
   end
