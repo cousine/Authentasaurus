@@ -44,6 +44,7 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
 
       # Controllers
       m.template 'controllers/user_sessions_controller.rb', File.join('app/controllers', class_path, "#{file_name}_sessions_controller.rb")
+	  m.template 'controllers/users_controller.rb', File.join('app/controllers', class_path, "#{file_name.pluralize}_controller.rb")
 
       # Functional
       m.template 'functional/user_sessions_controller_test.rb', File.join('test/functional', class_path, "#{file_name}_sessions_controller_test.rb")
@@ -63,6 +64,7 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
       m.route_name('login', '/login', { :controller => "#{file_name}_sessions", :action => 'new'})
       m.route_name('no_access', '/no_access', { :controller => "#{file_name}_sessions", :action => 'no_access'})
       m.route_resources "#{file_name}_sessions"
+	  m.route_resources "#{file_name.pluralize}"
 
       # Validations
       unless options[:skip_validation]
