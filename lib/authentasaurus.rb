@@ -49,9 +49,9 @@ module Authentasaurus
 
     private :check_write
 	unless options[:actions] == :all
-		before_filter :check_logged_in, :only => options[:actions]
+		before_filter :check_write, :only => options[:actions]
 	else
-		before_filter :check_logged_in
+		before_filter :check_write
 	end
   end
 
@@ -81,9 +81,9 @@ module Authentasaurus
 
     private :check_read
 	unless options[:actions] == :all
-		before_filter :check_logged_in, :only => options[:actions]
+		before_filter :check_read, :only => options[:actions]
 	else
-		before_filter :check_logged_in
+		before_filter :check_read
 	end
   end
 
