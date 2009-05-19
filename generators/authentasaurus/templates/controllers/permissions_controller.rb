@@ -1,2 +1,73 @@
 class PermissionsController < ApplicationController
+	require_read :model => <%= class_name %>, :actions => [:index, :show]
+	require_write :model => <%= class_name %>, :actions => [:new, :create, :edit, :update, :destroy]
+	
+	def index
+		@permissions = Permission.find :all
+		
+		respond_to do |format|
+			format.html
+		end
+	end
+	
+	def show
+		@permission = Permission.find params[:id]
+		
+		respond_to do |format|
+			format.html
+		end
+	end
+	
+	def new
+		@permission = Permission.new
+		
+		respond_to do |format|
+			format.html
+		end
+	end
+	
+	def create
+		@permission = Permission.new params[:permission]
+		
+		if request.post?
+			if @permission.save
+				flash.now[:notice] = "Permission created"
+				redirect_to :index
+			else
+				flash.now[:notice] = "Error creating permission"
+				render :new
+			end
+		end
+	end
+	
+	def edit
+		@permission = Permission.find params[:id]
+		
+		respond_to do |format|
+			format.html
+		end
+	end
+	
+	def update
+		@permission = Permission.find params[:id]
+		
+		if request.post?
+			if @permission.update_attributes(params[:permission])
+				flash.now[:notice] = "Permission updated"
+				redirect_to @permission
+			else
+				flash.now[:notice] = "Error updating permission"
+				render :edit
+			end
+		end
+	end
+	
+	def destroy
+		@permssion = Permission.find params[:id]
+		@permission.destroy()
+		
+		respond_to do |format|
+			format.html { redirect_to :index }
+		end
+	end
 end

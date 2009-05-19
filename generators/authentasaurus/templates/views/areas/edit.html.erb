@@ -1,0 +1,7 @@
+<h1>Editing <%= @area.target %></h1>
+<% form_for @area do |f| %>
+	<%= label_for :target %>
+	<%= f.text_field :target, :size => 30 %>
+	<br>
+	<%= f.submit %>
+<% end %>
