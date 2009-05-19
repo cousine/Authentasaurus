@@ -41,6 +41,14 @@ class CreateAuthentasaurusTables < ActiveRecord::Migration
       t.timestamps
     end
     <% end -%>
+	
+	# setup a test
+	administrators_group = Group.create :name => "Administrators"
+	everyone_group = Group.create :name => "Everyone"
+	
+	admin = <%= class_name %>.create :username => "admin", :password => "MyPassword@123", :name => "Administrator",	
+		:email => "admin@mydomain.com", :active => true, :group_id => administrators_group.id
+	
   
   end
 

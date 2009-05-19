@@ -79,10 +79,12 @@ class <%= class_name %> < ActiveRecord::Base
   private
   <% unless options[:skip_validation] -%>
   def create_validation
-    validation = Validation.new(:user_id => self.id, :validation_code => User.encrypt_password(self.username,self.password_seed))
-    unless validation.save
-      raise "Could not create validation record"
-    end
+	unless self.active
+		validation = Validation.new(:user_id => self.id, :validation_code => User.encrypt_password(self.username,self.password_seed))
+		unless validation.save
+		  raise "Could not create validation record"
+		end
+	end
   end
   <% end -%>
 
