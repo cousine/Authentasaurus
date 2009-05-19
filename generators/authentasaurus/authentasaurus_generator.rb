@@ -50,6 +50,8 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
       m.template 'controllers/user_sessions_controller.rb', File.join('app/controllers', class_path, "#{file_name}_sessions_controller.rb")
 	  m.template 'controllers/users_controller.rb', File.join('app/controllers', class_path, "#{file_name.pluralize}_controller.rb")
 	  m.template 'controllers/groups_controller.rb', File.join('app/controllers', class_path, "groups_controller.rb")
+	  m.template 'controllers/areas_controller.rb', File.join('app/controllers', class_path, "areas_controller.rb")
+	  m.template 'controllers/permissions_controller.rb', File.join('app/controllers', class_path, "permissions_controller.rb")
 
       # Functional
       m.template 'functional/user_sessions_controller_test.rb', File.join('test/functional', class_path, "#{file_name}_sessions_controller_test.rb")
@@ -69,6 +71,18 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
 		## groups
 	  m.template 'views/groups/show.html.erb', File.join('app/views/groups', class_path, "show.html.erb")
 	  m.file 'views/groups/index.html.erb', File.join("app/views/groups", class_path, "index.html.erb")
+	  m.file 'views/groups/edit.html.erb', File.join("app/views/groups", class_path, "edit.html.erb")
+	  m.file 'views/groups/new.html.erb', File.join("app/views/groups", class_path, "new.html.erb")
+		## areas
+	  m.file 'views/areas/edit.html.erb', File.join("app/views/areas", class_path, "edit.html.erb")
+	  m.file 'views/areas/index.html.erb', File.join("app/views/areas", class_path, "index.html.erb")
+	  m.file 'views/areas/new.html.erb', File.join("app/views/areas", class_path, "new.html.erb")
+	  m.file 'views/areas/show.html.erb', File.join("app/views/areas", class_path, "show.html.erb")
+		## permissions
+	  m.file 'views/permissions/edit.html.erb', File.join("app/views/permissions", class_path, "edit.html.erb")
+	  m.file 'views/permissions/index.html.erb', File.join("app/views/permissions", class_path, "index.html.erb")
+	  m.file 'views/permissions/new.html.erb', File.join("app/views/permissions", class_path, "new.html.erb")
+	  m.file 'views/permissions/show.html.erb', File.join("app/views/permissions", class_path, "show.html.erb")
 
 	  # Routes
       
@@ -77,6 +91,8 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
       m.route_resources "#{file_name}_sessions"
 	  m.route_resources "#{file_name.pluralize}"
 	  m.route_resources "groups"
+	  m.route_resources "areas"
+	  m.route_resources "permissions"
 
       # Validations
       unless options[:skip_validation]
