@@ -27,14 +27,12 @@ module Authentasaurus
     model = options[:model] || User
     user_id = options[:user_id] || :user_id
     user = options[:user_permissions] || :permissions
-    guest = options[:guest_permissions] || :guest_permissions
     login_message = options[:login_message] || "You need to login first."
 
     define_method "check_write" do
       if model.find_by_id(session[user_id])
         user_permissions = session[user]
-        guest_permissions = session[guest]
-        check = guest_permissions[:write].find { |perm| perm==self.controller_name  } || user_permissions[:write].find { |perm| perm==self.controller_name }
+        check = user_permissions[:write].find { |perm| perm==self.controller_name || perm=="all" }
         unless check
           redirect_to no_access_url
         end
@@ -59,14 +57,12 @@ module Authentasaurus
     model = options[:model] || User
     user_id = options[:user_id] || :user_id
     user = options[:user_permissions] || :user_permissions
-    guest = options[:guest_permissions] || :guest_permissions
     login_message = options[:login_message] || "You need to login first."
 
     define_method "check_read" do
       if model.find_by_id(session[user_id])
         user_permissions = session[user]
-        guest_permissions = session[guest]
-        check = guest_permissions[:read].find { |perm| perm==self.controller_name  } || user_permissions[:read].find { |perm| perm==self.controller_name }
+        check = user_permissions[:read].find { |perm| perm==self.controller_name || perm=="all" }
         unless check
           redirect_to no_access_url
         end

@@ -12,8 +12,6 @@ class <%= class_name %>Session
     if user
       session[:user_id]= user.id
       session[:user_permissions]= {:read => user.permissions.collect{|per| per.area.target if per.read}, :write => user.permissions.collect{|per| per.area.target if per.write}}
-      group_perms=Group.find_by_name("Everyone").permissions
-	  session[:guest_permissions]= {:read => group_perms.collect{|per| per.area.target if per.read}, :write => group_perms.collect{|per| per.area.target if per.write}}
       return true
     end
     return false

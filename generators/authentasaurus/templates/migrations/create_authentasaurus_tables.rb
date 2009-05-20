@@ -44,9 +44,11 @@ class CreateAuthentasaurusTables < ActiveRecord::Migration
 	
 	# setup a test
 	administrators_group = Group.create :name => "Administrators"
-	everyone_group = Group.create :name => "Everyone"
+	all_areas = Area.create :target => "all"
 	
-	admin = <%= class_name %>.create :username => "admin", :password => "MyPassword@123", :name => "Administrator",	
+	Permission.create :group_id => administrators_group.id, :area_id => all_areas.id, :read => true, :write => true
+	
+	<%= class_name %>.create :username => "admin", :password => "MyPassword@123", :name => "Administrator",	
 		:email => "admin@mydomain.com", :active => true, :group_id => administrators_group.id
 	
   
