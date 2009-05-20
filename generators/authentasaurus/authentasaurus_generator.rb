@@ -87,6 +87,7 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
 	  # Routes
       
       m.route_name('login', '/login', { :controller => "#{file_name}_sessions", :action => 'new'})
+	  m.route_name('logout', '/logout', { :controller => "#{file_name}_sessions", :action => 'destroy', :id => 1})
       m.route_name('no_access', '/no_access', { :controller => "#{file_name}_sessions", :action => 'no_access'})
       m.route_resources "#{file_name}_sessions"
 	  m.route_resources "#{file_name.pluralize}"
