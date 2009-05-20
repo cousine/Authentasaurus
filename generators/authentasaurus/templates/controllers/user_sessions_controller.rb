@@ -3,6 +3,10 @@ class <%= class_name %>SessionsController < ApplicationController
 
   # creates a new user session (login)
   def new
+	if check_logged_in
+		redirect_to ""
+	end
+	
     @session_object = <%= class_name %>Session.new
 
     respond_to do |format|

@@ -8,6 +8,6 @@
 <h2>Permissions</h2>
 <ul>
 	<%% @group.permissions.each do |permission| %>
-		<li><%%= link_to permission.area, permission %></li>
+		<li><%%= link_to permission.area.name, permission %></li>
 	<%% end %>
 </ul>
