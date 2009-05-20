@@ -1,6 +1,6 @@
 class Permission < ActiveRecord::Base
   belongs_to :group
-  has_one :area
+  belongs_to :area
 
   # Check that everything is there
   validates_presence_of :group_id,:area_id,:read,:write

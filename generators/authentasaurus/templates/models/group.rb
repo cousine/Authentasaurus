@@ -4,7 +4,5 @@ class Group < ActiveRecord::Base
 
   # Check that everything is there
   validates_presence_of :name
-  # Check foreign keys
-  validates_associated :<%= class_name.downcase.pluralize %>, :permissions
   
 end

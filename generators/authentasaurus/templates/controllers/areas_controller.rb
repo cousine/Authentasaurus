@@ -24,7 +24,7 @@ class AreasController < ApplicationController
 		if request.post?
 			if @area.save
 				flash.now[:notice] = "Area created" 
-				redirect_to :index
+				redirect_to :action=>:index
 			else
 				flash.now[:notice] = "Error creating area"
 				render :new
@@ -59,7 +59,7 @@ class AreasController < ApplicationController
 		@area.destroy
 		
 		respond_to do |format|
-			format.html { redirect_to :index }
+			format.html { redirect_to :action=>:index }
 		end
 	end
 end

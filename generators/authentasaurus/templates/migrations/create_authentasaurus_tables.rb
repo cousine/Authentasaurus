@@ -13,7 +13,7 @@ class CreateAuthentasaurusTables < ActiveRecord::Migration
     end
 
     create_table :areas do |t|
-      t.string :target, :null => false
+      t.string :name, :null => false
 
       t.timestamps
     end
@@ -44,7 +44,7 @@ class CreateAuthentasaurusTables < ActiveRecord::Migration
 	
 	# setup a test
 	administrators_group = Group.create :name => "Administrators"
-	all_areas = Area.create :target => "all"
+	all_areas = Area.create :name => "all"
 	
 	Permission.create :group_id => administrators_group.id, :area_id => all_areas.id, :read => true, :write => true
 	

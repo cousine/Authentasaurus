@@ -68,10 +68,7 @@ class <%= class_name %> < ActiveRecord::Base
     user=self.find_by_username username
     if user
       expected_password=encrypt_password(password, user.password_seed)
-      user = nil unless expected_password == user.hashed_password && user.active
-      <% unless options[:skip_validation] -%>
-      user = nil unless user.validation.nil?
-      <% end -%>
+      user = nil unless expected_password == user.hashed_password && user.active<% unless options[:skip_validation] -%> && user.validation.nil? <% end -%>
     end
     return user
   end

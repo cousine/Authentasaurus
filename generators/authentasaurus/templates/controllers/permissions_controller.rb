@@ -32,7 +32,7 @@ class PermissionsController < ApplicationController
 		if request.post?
 			if @permission.save
 				flash.now[:notice] = "Permission created"
-				redirect_to :index
+				redirect_to :action=>:index
 			else
 				flash.now[:notice] = "Error creating permission"
 				render :new
@@ -67,7 +67,7 @@ class PermissionsController < ApplicationController
 		@permission.destroy()
 		
 		respond_to do |format|
-			format.html { redirect_to :index }
+			format.html { redirect_to :action=>:index }
 		end
 	end
 end

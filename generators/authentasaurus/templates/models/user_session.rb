@@ -11,7 +11,7 @@ class <%= class_name %>Session
     user = <%= class_name %>.authenticate(@username, @password)
     if user
       session[:user_id]= user.id
-      session[:user_permissions]= {:read => user.permissions.collect{|per| per.area.target if per.read}, :write => user.permissions.collect{|per| per.area.target if per.write}}
+      session[:user_permissions]= {:read => user.permissions.collect{|per| per.area.name if per.read}, :write => user.permissions.collect{|per| per.area.name if per.write}}
       return true
     end
     return false

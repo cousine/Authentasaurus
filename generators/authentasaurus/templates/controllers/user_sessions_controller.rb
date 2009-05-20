@@ -34,7 +34,7 @@ class <%= class_name %>SessionsController < ApplicationController
     session[:guest_permissions]= nil
 
     respond_to do |format|
-      format.html {redirect_to :new}
+      format.html {redirect_to :action=>:new}
     end
   end
 

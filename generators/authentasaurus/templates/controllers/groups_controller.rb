@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
 		if request.post?
 			if @group.save
 				flash.now[:notice] = "Group created"
-				redirect_to :index
+				redirect_to :action=>:index
 			else
 				flash.now[:notice] = "Error creating group"
 				render :new
@@ -68,7 +68,7 @@ class GroupsController < ApplicationController
 		@group.destroy
 		
 		respond_to do |format|
-			format.html { redirect_to :index }
+			format.html { redirect_to :action=>:index }
 		end	
 	end
 	

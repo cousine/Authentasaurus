@@ -32,7 +32,7 @@ class <%= class_name.pluralize %>Controller < ApplicationController
 		if request.post?
 			if @user.save
 				flash.now[:notice] = "User saved successfully"
-				redirect_to :index
+				redirect_to :action=>:index
 			else
 				flash.now[:notice] = "Error saving user"
 				render :new
@@ -67,7 +67,7 @@ class <%= class_name.pluralize %>Controller < ApplicationController
 		@user.destroy
 		
 		respond_to do |format|
-			format.html { redirect_to :index }
+			format.html { redirect_to :action=>:index }
 		end
 	end
 end
