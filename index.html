@@ -10,7 +10,7 @@
 	<style type="text/css">
 		body {
   		margin-top: 1.0em;
-  		background-color: #465481;
+  		background-color: #FFFFFF;
 		  font-family: "helvetica"; 
   		color: #ffffff;
     }
@@ -59,23 +59,22 @@ Authentasaurus is also a group/permission plugin, you can define permissions per
 controller action for each group of users.</p><h2>Dependencies</h2>
 <p>Rails 2.3.2</p>
 <h2>Install</h2>
-<p>1. copy authentasaurus folder to your project vendor/plugins folder.
-2. run script/generator authentausaurus UserModelName in your project's
-   root directory. (replace UserModelName with the desired name for the main
-   user model --usually called user--)
-3. If you set up a UserModelName other than the default (user) add the following
-   option in the session controller (inside app/controllers) require_login
-   method, :model => UserModel
+<p>
+	<ol>
+		<li>copy authentasaurus folder to your project vendor/plugins folder.</li>
+		<li>run script/generator authentausaurus UserModelName in your project's root directory.<br />
+			<sup>(replace UserModelName with the desired name for the main user model --usually called user--)</sup></li>
+		<li>If you set up a UserModelName other than the default (user) add the following option in the session controller (inside app/controllers) require_login method, :model => UserModel
+		   <br />
+		   e.g.: created a UserModel called masher
+			require_login :model=> Masher, :actions => :destroy, :skip_request => true</li>
 
-   e.g.: created a UserModel called masher
-    require_login :model=> Masher, :actions => :destroy, :skip_request => true
-
-4. setup session store and create session migrations
-5. customize your user model and run your migerations
-6. if you installer authentasaurus without --skip-validation setup your email
-   settings in config/enviroment.rb
-7. thats it you can now test your application by running script/server in your
-   project root directory and going to http://localhost:3000/login</p>
+		<li>setup session store and create session migrations</li>
+		<li>customize your user model and run your migerations</li>
+		<li>if you installer authentasaurus without --skip-validation setup your email settings in config/enviroment.rb</li>
+		<li>thats it you can now test your application by running script/server in your project root directory and going to http://localhost:3000/login</li>
+	</ol>
+</p>
 <h2>License</h2>
 <p>Rails' (MIT)</p>
 <h2>Authors</h2>
