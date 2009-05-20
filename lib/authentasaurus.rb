@@ -21,6 +21,16 @@ module Authentasaurus
 	else
 		before_filter :check_logged_in
 	end
+
+    define_method "is_logged_in?" do
+      unless model.find_by_id(session[user_id])
+        return false
+      end
+	  return true
+    end
+
+    private :is_logged_in?
+
   end
   
   def require_write(options = {})
@@ -51,6 +61,15 @@ module Authentasaurus
 	else
 		before_filter :check_write
 	end
+	
+	define_method "is_logged_in?" do
+      unless model.find_by_id(session[user_id])
+        return false
+      end
+	  return true
+    end
+
+    private :is_logged_in?
   end
 
   def require_read(options = {})
@@ -81,6 +100,15 @@ module Authentasaurus
 	else
 		before_filter :check_read
 	end
+	
+	define_method "is_logged_in?" do
+      unless model.find_by_id(session[user_id])
+        return false
+      end
+	  return true
+    end
+
+    private :is_logged_in?
   end
 
 end
