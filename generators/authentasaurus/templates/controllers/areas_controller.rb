@@ -10,6 +10,14 @@ class AreasController < ApplicationController
 		end
 	end
 	
+	def show
+		@area = Area.find params[:id]
+		
+		respond_to do |format|
+			format.html
+		end
+	end
+	
 	def new
 		@area = Area.new
 		
