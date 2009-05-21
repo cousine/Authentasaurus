@@ -35,10 +35,15 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
 
       # Unit tests
       m.template 'unit/user_test.rb',  File.join('test/unit', class_path, "#{file_name}_test.rb")
+	  m.template 'unit/user_session_test.rb',  File.join('test/unit', class_path, "#{file_name}_session_test.rb")
       m.template 'unit/helpers/user_session_helper_test.rb',  File.join('test/unit/helpers', class_path, "#{file_name}_session_helper_test.rb")
+	  m.template 'unit/helpers/users_helper_test.rb',  File.join('test/unit/helpers', class_path, "#{file_name.pluralize}_helper_test.rb")
       m.file 'unit/area_test.rb', File.join('test/unit', class_path, "area_test.rb")
       m.file 'unit/group_test.rb', File.join('test/unit', class_path, "group_test.rb")
       m.file 'unit/permission_test.rb', File.join('test/unit', class_path, "permission_test.rb")
+	  m.file 'unit/helpers/areas_helper_test.rb', File.join('test/unit/helpers', class_path, "areas_helper_test.rb")
+	  m.file 'unit/helpers/groups_helper_test.rb', File.join('test/unit/helpers', class_path, "groups_helper_test.rb")
+	  m.file 'unit/helpers/permissions_helper_test.rb', File.join('test/unit/helpers', class_path, "permissions_helper_test.rb")
 
       # Fixtures
       m.file 'fixtures/areas.yml', File.join('test/fixtures', class_path, "areas.yml")
@@ -55,9 +60,17 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
 
       # Functional
       m.template 'functional/user_sessions_controller_test.rb', File.join('test/functional', class_path, "#{file_name}_sessions_controller_test.rb")
+	  m.template 'functional/users_controller_test.rb', File.join('test/functional', class_path, "#{file_name.pluralize}_controller_test.rb")
+	  m.file 'functional/groups_controller_test.rb', File.join('test/functional', class_path, "groups_controller_test.rb")
+	  m.file 'functional/areas_controller_test.rb', File.join('test/functional', class_path, "areas_controller_test.rb")
+	  m.file 'functional/permissions_controller_test.rb', File.join('test/functional', class_path, "permissions_controller_test.rb")
 
       # Helpers
       m.template 'helpers/user_sessions_helper.rb', File.join('app/helpers', class_path, "#{file_name}_sessions_helper.rb")
+	  m.template 'helpers/users_helper.rb', File.join('app/helpers', class_path, "#{file_name.pluralize}_helper.rb")
+	  m.file 'helpers/areas_helper.rb', File.join('app/helpers', class_path, "areas_helper.rb")
+	  m.file 'helpers/groups_helper.rb', File.join('app/helpers', class_path, "groups_helper.rb")
+	  m.file 'helpers/permissions_helper.rb', File.join('app/helpers', class_path, "permissions_helper.rb")
 
       # Views
 		## user sessions
@@ -104,6 +117,7 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
         # Unit tests
         m.file 'unit/validation_test.rb', File.join('test/unit', class_path, "validation_test.rb")
         m.file 'unit/validation_emailer_test.rb', File.join('test/unit', class_path, "validation_emailer_test.rb")
+		m.file 'unit/helpers/validations_helper_test.rb', File.join('test/unit/helpers', class_path, "validations_helper_test.rb")
 
         # Fixtures
         m.file 'fixtures/validations.yml', File.join('test/fixtures', class_path, "validations.yml")
@@ -111,10 +125,16 @@ class AuthentasaurusGenerator < Rails::Generator::NamedBase
 		
 		# Controllers
 		m.template 'controllers/validations_controller.rb', File.join('app/controllers', class_path, "validations_controller.rb")
+		
+		# Functional
+		m.file 'functional/validations_controller_test.rb', File.join('test/functional', class_path, "validations_controller_test.rb")
 
         # Views
 		m.file 'views/validations/index.html.erb', File.join("app/views/validations", class_path, "index.html.erb")
         m.file 'views/validation_emailer/validation_mail.erb', File.join("app/views/validation_emailer", class_path, "validation_mail.erb")
+		
+		# Helpers
+		m.file 'helpers/validations_helper.rb', File.join('app/helpers', class_path, "validations_helper.rb")
 		
 		# Routes
 		m.route_name('validate', '/validate', { :controller => "validations", :action => 'index'})
