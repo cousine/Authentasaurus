@@ -1,2 +1,2 @@
-module ValidationssHelper
+module ValidationsHelper
 end
