@@ -16,17 +16,17 @@ module Authentasaurus
     end
 
     private :check_logged_in
-	unless options[:actions] == :all
-		before_filter :check_logged_in, :only => options[:actions]
-	else
-		before_filter :check_logged_in
-	end
+		unless options[:actions] == :all
+			before_filter :check_logged_in, :only => options[:actions]
+		else
+			before_filter :check_logged_in
+		end
 
     define_method "is_logged_in?" do
       unless model.find_by_id(session[user_id])
         return false
       end
-	  return true
+			return true
     end
 
     private :is_logged_in?
@@ -36,7 +36,7 @@ module Authentasaurus
   def require_write(options = {})
     model = options[:model] || User
     user_id = options[:user_id] || :user_id
-    user = options[:user_permissions] || :permissions
+    user = options[:user_permissions] || :user_permissions
     login_message = options[:login_message] || "You need to login first."
 
     define_method "check_write" do
@@ -56,17 +56,17 @@ module Authentasaurus
     end
 
     private :check_write
-	unless options[:actions] == :all
-		before_filter :check_write, :only => options[:actions]
-	else
-		before_filter :check_write
-	end
+		unless options[:actions] == :all
+			before_filter :check_write, :only => options[:actions]
+		else
+			before_filter :check_write
+		end
 	
-	define_method "is_logged_in?" do
+		define_method "is_logged_in?" do
       unless model.find_by_id(session[user_id])
         return false
       end
-	  return true
+			return true
     end
 
     private :is_logged_in?
@@ -95,17 +95,17 @@ module Authentasaurus
     end
 
     private :check_read
-	unless options[:actions] == :all
-		before_filter :check_read, :only => options[:actions]
-	else
-		before_filter :check_read
-	end
+		unless options[:actions] == :all
+			before_filter :check_read, :only => options[:actions]
+		else
+			before_filter :check_read
+		end
 	
-	define_method "is_logged_in?" do
+		define_method "is_logged_in?" do
       unless model.find_by_id(session[user_id])
         return false
       end
-	  return true
+			return true
     end
 
     private :is_logged_in?

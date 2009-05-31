@@ -1,18 +1,18 @@
 <h1>Editing <%= @permission.area.target %> permissions for <%= @permission.group.name %></h1>
 <%= form_for @permission do |f| %>
-	<%= label_for :group_id %>
+	<%= f.label :group_id %>
 	<%= f.collection_select(:group_id, Group.find(:all), :id, :name, {:prompt => true}) %>
 	<br>
-	<%= label_for :area_id %>
+	<%= f.label :area_id %>
 	<%= f.collection_select(:area_id, Area.find(:all), :id, :name, {:prompt => true}) %>
 	<br>
-	<%= label_for :group_id %>
+	<%= f.label :group_id %>
 	<%= f.collection_select(:group_id, Group.find(:all), :id, :name, {:prompt => true}) %>
 	<br>
-	<%= label_for :read %>
+	<%= f.label :read %>
 	<%= f.check_box :read %>
 	<br>
-	<%= label_for :write %>
+	<%= f.label :write %>
 	<%= f.check_box :write %>
 	<br>
 	<%= f.submit %>

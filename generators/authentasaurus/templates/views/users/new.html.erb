@@ -2,25 +2,25 @@
 <% form_for @user do |f| %>
 	<%= f.error_messages %>
 	<br>
-	<%= label_for :username %>
+	<%= f.label :username %>
 	<%= f.text_field :username, :size => 30 %>
 	<br>
-	<%= label_for :password %>
+	<%= f.label :password %>
 	<%= f.password_field :password, :size => 30 %>
 	<br>
-	<%= label_for :password_confirmation %>
+	<%= f.label :password_confirmation %>
 	<%= f.password_field :password_confirmation, :size => 30 %>
 	<br>
-	<%= label_for :name %>
+	<%= f.label :name %>
 	<%= f.text_field :name, :size => 30 %>
 	<br>
-	<%= label_for :email %>
+	<%= f.label :email %>
 	<%= f.text_field :email, :size => 30 %>
 	<br>
-	<%= label_for :active %>
-	<%= f.check_box_field :active %>
+	<%= f.label :active %>
+	<%= f.check_box :active %>
 	<br>
-	<%= label_for :group_id %>
+	<%= f.label :group_id %>
 	<%= f.collection_select(:group_id, Group.find(:all), :id, :name, {:prompt => true}) %>
 	<br>
 	<%= f.submit "Create" %>
