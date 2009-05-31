@@ -23,12 +23,12 @@ class <%= class_name %> < ActiveRecord::Base
   validates_format_of :password, :with => %r{[@$%!&]}, :message => "must contain one of the symbols: @$%!&", :on => :create
   validates_confirmation_of :password, :on => :create
   # Check Password format (new password) -ON UPDATE-
-  validates_length_of :new_password, :minimum => 6, :on => :update, :unless => :new_password == ""
-  validates_format_of :new_password, :with => %r{[a-z]}, :message => "must contain lower case characters", :on => :update, :unless => :new_password == ""
-  validates_format_of :new_password, :with => %r{[A-Z]}, :message => "must contain higher case characters", :on => :update, :unless => :new_password == ""
-  validates_format_of :new_password, :with => %r{[0-9]}, :message => "must contain digits", :on => :update, :unless => :new_password == ""
-  validates_format_of :new_password, :with => %r{[@$%!&]}, :message => "must contain one of the symbols: @$%!&", :on => :update, :unless => :new_password == ""
-  validates_confirmation_of :new_password, :on => :update, :unless => :new_password == ""
+  validates_length_of :new_password, :minimum => 6, :on => :update, :unless => :new_password_blank?
+  validates_format_of :new_password, :with => %r{[a-z]}, :message => "must contain lower case characters", :on => :update, :unless => :new_password_blank?
+  validates_format_of :new_password, :with => %r{[A-Z]}, :message => "must contain higher case characters", :on => :update, :unless => :new_password_blank?
+  validates_format_of :new_password, :with => %r{[0-9]}, :message => "must contain digits", :on => :update, :unless => :new_password_blank?
+  validates_format_of :new_password, :with => %r{[@$%!&]}, :message => "must contain one of the symbols: @$%!&", :on => :update, :unless => :new_password_blank?
+  validates_confirmation_of :new_password, :on => :update, :unless => :new_password_blank?
 
   <% unless options[:skip_validation] -%>
   # Create validation on create
@@ -74,26 +74,30 @@ class <%= class_name %> < ActiveRecord::Base
   end
 
   private
-  <% unless options[:skip_validation] -%>
-  def create_validation
-	unless self.active
-		validation = Validation.new(:user_id => self.id, :validation_code => User.encrypt_password(self.username,self.password_seed))
-		unless validation.save
-		  raise "Could not create validation record"
+		def new_password_blank? 
+			self.new_password.blank?
 		end
-	end
-  end
-  <% end -%>
+		
+		<% unless options[:skip_validation] -%>
+		def create_validation
+			unless self.active
+				validation = Validation.new(:user_id => self.id, :validation_code => User.encrypt_password(self.username,self.password_seed))
+				unless validation.save
+					raise "Could not create validation record"
+				end
+			end
+		end
+		<% end -%>
 
-  # Creates password seed (salt)
-  def create_salt
-    self.password_seed = self.object_id.to_s + rand.to_s
-  end
+		# Creates password seed (salt)
+		def create_salt
+			self.password_seed = self.object_id.to_s + rand.to_s
+		end
 
-  # Encrypts the password using the given seed
-  def self.encrypt_password(password, password_seed)
-    pass_to_hash=password + "Securasaurus" + password_seed
-    Digest::SHA1.hexdigest(pass_to_hash)
-  end
+		# Encrypts the password using the given seed
+		def self.encrypt_password(password, password_seed)
+			pass_to_hash=password + "Securasaurus" + password_seed
+			Digest::SHA1.hexdigest(pass_to_hash)
+		end
   
 end
