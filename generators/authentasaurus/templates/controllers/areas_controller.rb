@@ -29,13 +29,13 @@ class AreasController < ApplicationController
 	def create
 		@area = Area.new params[:area]
 		
-		if request.post?
+		respond_to do |format|
 			if @area.save
 				flash.now[:notice] = "Area created" 
-				redirect_to :action=>:index
+				format.html { redirect_to :action=>:index }
 			else
 				flash.now[:notice] = "Error creating area"
-				render :new
+				format.html { render :new }
 			end
 		end
 	end
@@ -51,13 +51,13 @@ class AreasController < ApplicationController
 	def update
 		@area = Area.find params[:id]
 		
-		if request.post?
+		respond_to do |format|
 			if @area.update_attributes(params[:area])
 				flash.now[:notice] = "Area updated"
-				redirect_to @area
+				format.html { redirect_to @area }
 			else
 				flash.now[:notice] = "Error updating area"
-				render :edit
+				format.html { render :edit }
 			end
 		end
 	end

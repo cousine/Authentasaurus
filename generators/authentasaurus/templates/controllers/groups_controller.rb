@@ -29,13 +29,13 @@ class GroupsController < ApplicationController
 	def create
 		@group = Group.new params[:group]
 		
-		if request.post?
+		respond_to do |format|
 			if @group.save
 				flash.now[:notice] = "Group created"
-				redirect_to :action=>:index
+				format.html { redirect_to :action=>:index }
 			else
 				flash.now[:notice] = "Error creating group"
-				render :new
+				format.html { render :new }
 			end
 		end
 	end
@@ -51,13 +51,13 @@ class GroupsController < ApplicationController
 	def update
 		@group = Group.find params[:id]
 		
-		if request.post?
+		respond_to do |format|
 			if @group.update_attributes(params[:group])
 				flash.now[:notice] = "Group updated"
-				redirect_to @group
+				format.html { redirect_to @group }
 			else
 				flash.now[:notice] = "Error updating group"
-				render :edit
+				format.html { render :edit }
 			end
 		end
 		

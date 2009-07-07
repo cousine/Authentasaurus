@@ -14,14 +14,14 @@ class <%= class_name %>SessionsController < ApplicationController
   def create
     @session_object = <%= class_name %>Session.new(params[:<%= file_name %>_session])
 
-    if request.post?
+    respond_to do |format|
       if @session_object.login(session)
         uri =session[:original_url]
         session[:original_url]=nil
-        redirect_to(uri || "" )
+        format.html { redirect_to(uri || "" ) }
       else
         flash.now[:notice] = "Invalid username/password combination"
-        render :new
+        format.html { render :new }
       end
     end
   end

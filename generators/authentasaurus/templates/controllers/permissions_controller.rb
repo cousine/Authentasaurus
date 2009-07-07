@@ -29,13 +29,13 @@ class PermissionsController < ApplicationController
 	def create
 		@permission = Permission.new params[:permission]
 		
-		if request.post?
+		respond_to do |format|
 			if @permission.save
 				flash.now[:notice] = "Permission created"
-				redirect_to :action=>:index
+				format.html { redirect_to :action=>:index }
 			else
 				flash.now[:notice] = "Error creating permission"
-				render :new
+				format.html { render :new }
 			end
 		end
 	end
@@ -51,13 +51,13 @@ class PermissionsController < ApplicationController
 	def update
 		@permission = Permission.find params[:id]
 		
-		if request.post?
+		respond_to do |format|
 			if @permission.update_attributes(params[:permission])
 				flash.now[:notice] = "Permission updated"
-				redirect_to @permission
+				format.html { redirect_to @permission }
 			else
 				flash.now[:notice] = "Error updating permission"
-				render :edit
+				format.html { render :edit }
 			end
 		end
 	end

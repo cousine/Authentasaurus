@@ -29,13 +29,13 @@ class <%= class_name.pluralize %>Controller < ApplicationController
 	def create
 		@user = <%= class_name %>.new params[:user]
 			
-		if request.post?
+		respond_to do |format|
 			if @user.save
 				flash.now[:notice] = "User saved successfully"
-				redirect_to :action=>:index
+				format.html { redirect_to :action=>:index }
 			else
 				flash.now[:notice] = "Error saving user"
-				render :new
+				format.html { render :new }
 			end
 		end
 	end
@@ -51,13 +51,13 @@ class <%= class_name.pluralize %>Controller < ApplicationController
 	def update
 		@user = <%= class_name %>.find params[:id]
 		
-		if request.post?
+		respond_to do |format|
 			if @user.update_attributes(params[:user])
 				flash.now[:notice] = "User updated"
-				redirect_to @user
+				format.html { redirect_to @user }
 			else
 				flash.now[:notice] = "Error updating user"
-				render :edit
+				format.html { render :edit }
 			end
 		end
 	end
