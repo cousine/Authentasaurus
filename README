@@ -24,17 +24,18 @@ To start using Authentasaurus follow these simple steps :
    e.g.: created a UserModel called masher
     require_login :model=> Masher, :actions => :destroy, :skip_request => true
 
-4. setup session store and create session migrations
-5. customize your user model and run your migerations
-6. if you installer authentasaurus without --skip-validation setup your email
+4. Run "rake authentasaurus:load_defaults" to create the default groups and admin user
+5. setup session store and create session migrations
+6. customize your user model and run your migrations
+7. if you installed authentasaurus without --skip-validation setup your email
    settings in config/enviroment.rb
-7. thats it you can now test your application by running script/server in your
+8. thats it you can now test your application by running script/server in your
    project root directory and going to http://localhost:3000/login
 
 Generator options
 =================
 
-You can user some options with the Authentasaurus generator, currently only one
+You can use some options with the Authentasaurus generator; currently only one
 is available:
 
 --skip-validation
@@ -105,4 +106,4 @@ require_read: requires the user to have a read permission to that area to
 
 
 
-Copyright (c) 2009 Mash Solutions, released under the MIT license
+Copyright (c) 2009 Mash, Ltd., released under the MIT license
