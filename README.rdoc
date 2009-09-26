@@ -29,19 +29,22 @@ project root directory and going to http://localhost:3000/login
 Authentasaurus takes advantage of rails' before_filter; it checks for the appropriate permissions before 
 every action that requires a login, a write or read permission.
 
-Authentasaurus uses the following terms: Area, Group and Permission
+At login, authentasaurus would load the user's group permissions into a session hash and then attempts to read that hash
+when it meets a require helper on a controller.
 
-An area is in plain english the controller's name, so if you have a controller named "PostsController", the corresponding
-area name would be "posts" (just as you type it in the generator command)
+=== Authentasaurus uses the following terms:
 
-A group is as the name suggests, each group contains a number of users, and each user inherits the group permissions,
-also note that at any given time, the user can only belong to one group
+<tt>Area</tt>:: 
+  An area is in plain english the controller's name, so if you have a controller named "PostsController", the corresponding
+  area name would be "posts" (just as you type it in the generator command)
 
-A permission is one of two, either read or write, but take care, read or write is only a naming, and though it doesn't make
-sense, you could treat a read permission as a write permission and vice versa, but as i said it makes no sense !
+<tt>Group</tt>::
+  A group is as the name suggests, each group contains a number of users, and each user inherits the group permissions,
+  also note that at any given time, the user can only belong to one group
 
-At login, authentasaurus would load the user's group permissions into his/her session and then attempts to read that hash
-when it meats a require helper on a controller.
+<tt>Permission</tt>::
+  A permission is one of two, either read or write, but take care, read or write is only a naming, and though it doesn't make
+  sense, you could treat a read permission as a write permission and vice versa, but as i said it makes no sense !
 
 == Generator options
 
