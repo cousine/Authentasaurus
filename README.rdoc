@@ -61,11 +61,11 @@ ex: Tells Authentasaurus that the action destroy requires login and that
 Authentasaurus shouldn't store the request in the session
 (typically for logout actions)
 
-:model - Specifies the model that controls user information.
-:user_id - the session variable that holds the logged in user id
-:login_message - flash message to display when login is required
-:actions - actions that require the permission (list)
-:skip_request - skips saving the original request (to redirect to after login)
+* :model - Specifies the model that controls user information.
+* :user_id - the session variable that holds the logged in user id
+* :login_message - flash message to display when login is required
+* :actions - actions that require the permission (list)
+* :skip_request - skips saving the original request (to redirect to after login)
 
      require_login :model=> Masher, :actions => :destroy, :skip_request => true
 
@@ -76,13 +76,13 @@ requires login and write permission.
 if you change any session variables in the session model you have to
 tell Authentasaurus where to find it.
 
-:model - Specifies the model that controls user information.
-:user_id - the session variable that holds the logged in user id
-:user_permissions - the session variable that holds the user permissions
-:guest_permissions - the session variable that holds guests' permissions
-:login_message - flash message to display when login is required
-:actions - actions that require the permission (list)
-:skip_request - skips saving the original request (to redirect to after login)
+* :model - Specifies the model that controls user information.
+* :user_id - the session variable that holds the logged in user id
+* :user_permissions - the session variable that holds the user permissions
+* :guest_permissions - the session variable that holds guests' permissions
+* :login_message - flash message to display when login is required
+* :actions - actions that require the permission (list)
+* :skip_request - skips saving the original request (to redirect to after login)
 
      require_write :model=> Masher,:user_permissions => :perms,
                    :guest_permissions => :guest_perms,
@@ -95,13 +95,13 @@ ex: Tells Authentasaurus that the action show_user requires login and read
 permission. if you change any session variables in the session model you
 have to tell Authentasaurus where to find it.
 
-:model - Specifies the model that controls user information.
-:user_id - the session variable that holds the logged in user id
-:user_permissions - the session variable that holds the user permissions
-:guest_permissions - the session variable that holds guests' permissions
-:login_message - flash message to display when login is required
-:actions - actions that require the permission (list)
-:skip_request - skips saving the original request (to redirect to after login)
+* :model - Specifies the model that controls user information.
+* :user_id - the session variable that holds the logged in user id
+* :user_permissions - the session variable that holds the user permissions
+* :guest_permissions - the session variable that holds guests' permissions
+* :login_message - flash message to display when login is required
+* :actions - actions that require the permission (list)
+* :skip_request - skips saving the original request (to redirect to after login)
 
      require_read :model=> Masher,:user_permissions => :perms,
                    :guest_permissions => :guest_perms,
