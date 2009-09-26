@@ -55,7 +55,8 @@ is available:
 
 There are three main session helpers in Authentasaurus:
 
-require_login: requires the user to login before accessing the actions specified
+<tt>require_login:</tt>::
+requires the user to login before accessing the actions specified
 
 ex: Tells Authentasaurus that the action destroy requires login and that
 Authentasaurus shouldn't store the request in the session
@@ -69,7 +70,8 @@ Authentasaurus shouldn't store the request in the session
 
      require_login :model=> Masher, :actions => :destroy, :skip_request => true
 
-require_write: requires the user to have a write permission to that area to access the actions specified
+<tt>require_write:</tt>::
+requires the user to have a write permission to that area to access the actions specified
 
 ex: Tells Authentasaurus that the actions create_user and delete_user
 requires login and write permission.
@@ -89,7 +91,8 @@ tell Authentasaurus where to find it.
                    :login_message => "Busted, login first",
                    :actions => [:create_user, :delete_user]
 
-require_read: requires the user to have a read permission to that area to access the actions specified
+<tt>require_read:</tt>::
+requires the user to have a read permission to that area to access the actions specified
 
 ex: Tells Authentasaurus that the action show_user requires login and read
 permission. if you change any session variables in the session model you
