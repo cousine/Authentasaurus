@@ -58,7 +58,7 @@ There are three main session helpers in Authentasaurus:
 <tt>require_login</tt>::
   requires the user to login before accessing the actions specified
 
-  ex: Tells Authentasaurus that the action destroy requires login and that
+  <b>ex:</b> Tells Authentasaurus that the action destroy requires login and that
   Authentasaurus shouldn't store the request in the session
   (typically for logout actions)
 
@@ -73,8 +73,9 @@ There are three main session helpers in Authentasaurus:
 <tt>require_write</tt>::
   requires the user to have a write permission to that area to access the actions specified
 
-  ex: Tells Authentasaurus that the actions create_user and delete_user
+  <b>ex:</b> Tells Authentasaurus that the actions create_user and delete_user
   requires login and write permission.
+  
   if you change any session variables in the session model you have to
   tell Authentasaurus where to find it.
 
@@ -94,8 +95,10 @@ There are three main session helpers in Authentasaurus:
 <tt>require_read</tt>::
   requires the user to have a read permission to that area to access the actions specified
 
-  ex: Tells Authentasaurus that the action show_user requires login and read
-  permission. if you change any session variables in the session model you
+  <b>ex:</b> Tells Authentasaurus that the action show_user requires login and read
+  permission. 
+  
+  if you change any session variables in the session model you
   have to tell Authentasaurus where to find it.
 
   * :model - Specifies the model that controls user information.
