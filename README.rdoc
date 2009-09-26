@@ -51,8 +51,8 @@ when it meets a require helper on a controller.
 You can use some options with the Authentasaurus generator; currently only one
 is available:
 
-  --skip-validation
-    { Skips generating the validation files used to send activation emails }
+<tt>--skip-validation</tt>::
+  Skips generating the validation files used to send activation emails
 
 == Session/Permissions Helpers
 
